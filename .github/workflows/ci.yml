@@ -1,0 +1,98 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'website/**'
+      - 'dapp/**'
+      - '.github/workflows/**'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'website/**'
+      - 'dapp/**'
+      - '.github/workflows/**'
+
+jobs:
+  website:
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.modified, 'website/') || contains(github.event.pull_request.title, 'website')
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    defaults:
+      run:
+        working-directory: ./website
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check code formatting
+        run: npm run format:check || npm run prettier:check || echo "No format check script found"
+
+      - name: Run ESLint
+        run: npm run lint || echo "No lint script found"
+
+      - name: Run tests
+        run: npm test
+        env:
+          CI: true
+
+      - name: Build project
+        run: npm run build
+        env:
+          CI: true
+
+  dapp:
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.modified, 'dapp/') || contains(github.event.pull_request.title, 'dapp')
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    defaults:
+      run:
+        working-directory: ./dapp
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: dapp/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check code formatting
+        run: npm run format:check || npm run prettier:check || echo "No format check script found"
+
+      - name: Run ESLint
+        run: npm run lint || echo "No lint script found"
+
+      - name: Run tests
+        run: npm test
+        env:
+          CI: true
+
+      - name: Build project
+        run: npm run build
+        env:
+          CI: true
