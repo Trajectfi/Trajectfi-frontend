@@ -38,7 +38,7 @@ const SideBar = () => {
           return (
             <Link
               className={
-                "flex rounded-xl p-3 items-center space-x-4" +
+                "flex text-center rounded-xl p-3 items-center space-x-4" +
                 " " +
                 (path.includes(nav.url) ? "bg-[#835aff]" : " ")
               }

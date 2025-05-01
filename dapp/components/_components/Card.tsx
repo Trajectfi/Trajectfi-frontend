@@ -21,7 +21,7 @@ const Card = ({
   title,
 }: CardProp) => {
   return (
-    <div className=" bg-[#090a20] p-2 rounded-xl">
+    <div className=" bg-[#090a20] p-2 w-fit rounded-xl">
       {received ? (
         ongoing ? (
           <div className="bg-green-600 p-2 fixed rounded-xl">Ongoing</div>

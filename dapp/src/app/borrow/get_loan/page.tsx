@@ -61,7 +61,7 @@ const collections = [
 
 const page = () => {
   return (
-    <div className="bg-[#13142a] flex p-4 rounded-2xl">
+    <div className="bg-[#13142a] flex lg:flex-row flex-col p-4 rounded-2xl">
       {/* collections side panel */}
       <div className="bg-[#090a20] space-y-6 p-4 rounded-2xl">
         <div>Collections</div>
@@ -86,7 +86,7 @@ const page = () => {
       {/* Search result section */}
       <div className=" p-4">
         <div>Search Results</div>
-        <div className="flex space-x-3">
+        <div className="flex flex-wrap space-y-2 md:*:my-2 space-x-3">
           {cards.map((card, index) => {
             return (
               <Card
