@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
-    <div>
+    <div className="p-4">
       <h1 className="text-2xl font-bold mb-6">My Assets</h1>
       
       <div className="border border-gray-800 rounded-xl overflow-hidden">
