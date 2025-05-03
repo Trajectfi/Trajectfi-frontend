@@ -51,6 +51,10 @@ export default {
   				'5': 'hsl(var(--chart-5))'
   			}
   		},
+		  backgroundImage: {
+			'gradientbg': "url('/Herosection.png')", // Add url() and use root path
+		  },
+
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
@@ -58,5 +62,5 @@ export default {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+//   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
