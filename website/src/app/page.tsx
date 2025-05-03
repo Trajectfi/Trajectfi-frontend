@@ -1,5 +1,6 @@
 import FAQ from "./components/faq";
 import Participants from "./components/participants";
+import Footer from "./components/footer";
 
 export default function Home() {
   return (
@@ -11,9 +12,9 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="bg-gray-900 text-white">
-        
-      </footer>
+      {/* <footer className="bg-gray-900 text-white">
+      </footer> */}
+      <Footer />
     </div>
   );
 }
