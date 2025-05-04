@@ -19,3 +19,8 @@ body {
   background: #06071B;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+* {
+  font-family: monospace;
+  font-size: small;
+}
