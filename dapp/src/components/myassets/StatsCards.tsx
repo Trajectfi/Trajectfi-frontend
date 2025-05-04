@@ -1,10 +1,10 @@
 // src/app/my_assets/components/StatsCards.tsx
 import Image from "next/image";
 import React from "react";
-import purple from '../../../../public/images/purple.png';
-import pink from '../../../../public/images/pink.png';
-import orange from '../../../../public/images/orange.png';
-import green from '../../../../public/images/green.png';
+import purple from '../../../public/images/purple.png';
+import pink from '../../../public/images/pink.png';
+import orange from '../../../public/images/orange.png';
+import green from '../../../public/images/green.png';
 
 export const StatsCards = () => (
   <div className="grid grid-cols-4 gap-4 mb-8">

@@ -1,7 +1,7 @@
 // src/app/my_assets/components/NFTList.tsx
 import Image from "next/image";
 import React from "react";
-import { NFT } from "../../types";
+import { NFT } from "@/app/types";
 import Link from "next/link";
 
 interface NFTListProps {
