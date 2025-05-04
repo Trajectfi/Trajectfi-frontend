@@ -12,14 +12,14 @@ import Avatar3 from "../../../public/images/Avatar3.png";
 import Avatar4 from "../../../public/images/Avatar4.png";
 import Avatar5 from "../../../public/images/Avatar5.png";
 import Avatar6 from "../../../public/images/Avatar6.png";
-import { Collection, NFT } from "../types";
-import { StatsCards } from "./components/StatsCards";
-import { CollectionsSidebar } from "./components/CollectionSidebar";
-import { ViewToggle } from "./components/ViewToggle";
-import { NFTGrid } from "./components/NFTGrid";
-import { NFTList } from "./components/NFTList";
+import { Collection, NFT } from "@/app/types";
+import { StatsCards } from "@/components/myassets/StatsCards";
+import { CollectionsSidebar } from "@/components/myassets/CollectionSidebar";
+import { ViewToggle } from "@/components/myassets/ViewToggle";
+import { NFTGrid } from "@/components/myassets/NFTGrid";
+import { NFTList } from "@/components/myassets/NFTList";
 
-export default function NFTMarketplace() {
+export default function MyAssets() {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [activeTab, setActiveTab] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
@@ -108,7 +108,7 @@ export default function NFTMarketplace() {
   });
 
   return (
-    <div className="min-h-screen bg-[#06071B] text-white p-4">
+    <div className="min-h-screen  text-white p-4">
       <h1 className="text-xl font-medium mb-6">My Assets</h1>
 
       <StatsCards />
