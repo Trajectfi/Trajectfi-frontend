@@ -29,8 +29,8 @@ const Card = ({
           <div className="bg-red-600 p-2 fixed rounded-xl">Closed</div>
         )
       ) : null}
-      <Image src={src} alt={src} width={240} height={350}></Image>
-      <div className="flex justify-between space-y-2 p-4 w-full items-center">
+      <Image src={src} alt={src} width={250} height={360}></Image>
+      <div className="flex justify-between space-y-2 py-4 w-full items-center">
         <div>
           <div className="text-lg">{title}</div>
           <div className="text-xs" style={{ color: "#878893" }}>
@@ -41,18 +41,24 @@ const Card = ({
           received ? (
             <div> Escrow</div>
           ) : (
-            <div>Listed</div>
+            <div className="bg-[#1a2a32] p-2 rounded-2xl text-[#44a36b]">
+              Listed
+            </div>
           )
         ) : (
           <div
-            className="p-3 rounded-3xl "
+            className="p-2 rounded-2xl "
             style={{ color: "#e28706", backgroundColor: "#663d08" }}
           >
             Unlisted
           </div>
         )}
       </div>
-      {offered ? <div>{received ? "View" : "See Offers"}</div> : null}
+      {offered ? (
+        <div className="bg-[#8659fe] text-center p-2 rounded-2xl">
+          {received ? "View" : "See Offers"}
+        </div>
+      ) : null}
     </div>
   );
 };
