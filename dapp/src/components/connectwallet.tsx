@@ -4,15 +4,14 @@ const Connectwallet = () => {
   return (
     <div className="min-h-screen text-white p-4">
       <h1 className="text-xl font-medium mb-6">My Assets</h1>
-      <div className="border border-[#1c1f3f] rounded-[10px] h-[600px] relative bg-[#35355033] overflow-hidden">
+      <div className="border border-[#1c1f3f] rounded-[10px] h-[600px] relative overflow-hidden">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "url(/connectwallet_bg.jpg)",
+            backgroundImage: "url(/test.png)",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            mixBlendMode: "multiply",
             opacity: 1,
           }}
         />
