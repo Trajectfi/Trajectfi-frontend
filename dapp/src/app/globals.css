@@ -9,13 +9,18 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #080a1f;
     --foreground: #ededed;
   }
 }
 
 body {
-  color: var(--foreground);
-  background: #06071B;
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background-color: #b56203;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }

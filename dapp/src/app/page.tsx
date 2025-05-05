@@ -1,24 +1,52 @@
 "use client";
-import { MyAssets, ConnectWallet } from "@/components";
-import { useState } from "react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { usePathname } from "next/navigation";
 
-const Home = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+export default function Home() {
+  const pathname = usePathname();
+  const getPageTitle = () => {
+    const path = pathname.slice(1) || "home";
+    return path
+      .split("_")
+      .join(" ")
+      .split("-")
+      .join(" ")
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
   };
+
   return (
-    <div className="">
-      <button
-        onClick={toggleSidebar}
-        type="button"
-        className="hidden lg:flex items-center px-4 py-2 text-sm font-medium text-white bg-purple-700  rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
-      >
-        Toogle
-      </button>
-      {isSidebarOpen ? <MyAssets /> : <ConnectWallet />}
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-6">{getPageTitle()}</h1>
+
+      <div className="border border-gray-800 rounded-xl overflow-hidden">
+        <div
+          className="relative flex items-center justify-center py-20"
+          style={{
+            backgroundImage: "url('/nft-collage-bg.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="text-center z-10 px-4 bg-page-bg bg-cover bg-no-repeat rounded-lg h-[700px] w-full flex flex-col items-center justify-center">
+            <h2 className="text-4xl font-bold mb-4">Connect Your Wallet</h2>
+            <p className="text-gray-300 mb-8">
+              To view your assets, please connect your wallet.
+            </p>
+            <Link href="#">
+              <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg flex items-center justify-center mx-auto">
+                Connect Wallet
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </button>
+            </Link>
+          </div>
+
+          {/* Dark overlay */}
+          <div className="absolute"></div>
+        </div>
+      </div>
     </div>
   );
-};
-
-export default Home;
+}
