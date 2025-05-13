@@ -24,3 +24,8 @@ body {
     text-wrap: balance;
   }
 }
+
+* {
+  font-family: monospace;
+  font-size: small;
+}
