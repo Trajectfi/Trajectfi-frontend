@@ -1,24 +1,48 @@
 import Image from "next/image";
-import Punk from "@/assets/punk.png";
-import Net from "@/assets/net.png";
-import Reload from "@/assets/reload.png";
-import Angle from "@/assets/angle.png";
+
 
 export default function ListingInfo() {
+
+
+  const optionButtons = [
+    {
+      imageSrc: "/images/world.svg",
+      path: "#"
+    },
+    {
+      imageSrc: "/images/triangle.svg",
+      path: "#"
+    },
+    {
+      imageSrc: "/images/undo.svg",
+      path: "#"
+    },
+  ]
+
+
+
+
+
   return (
     <div className="bg-[#1a1a2e] rounded-xl p-4 w-full md:flex-1 text-white font-sans flex flex-col">
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-sm font-semibold">Listing Information</h3>
         <div className="flex gap-2">
-          <Image src={Net} alt="network" width={22} height={22} />
-          <Image src={Angle} alt="angle" width={22} height={22} />
-          <Image src={Reload} alt="reload" width={22} height={22} />
+
+          {optionButtons.map((button, index) => (
+            <button key={index} className="w-5 h-5 rounded-full bg-[#080A1F] flex items-center justify-center " >
+              <Image src={button.imageSrc} alt="icon" width={100} height={100} className=" w-[12.5px] h-[12.5px] rounded-full " />
+            </button>
+          ))
+
+          }
+
         </div>
       </div>
 
       <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg mb-4">
         <Image
-          src={Punk}
+          src={"/images/CryptoPunk.svg"}
           alt="CryptoPunk"
           fill
           className="object-cover rounded-lg"
