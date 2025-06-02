@@ -2,21 +2,32 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ListingInfo from './component/ListingInfo';
 import LoanTable from './component/LoanTable';
 import Image from 'next/image';
 import AcceptOfferComponent from './component/AcceptOfferComponent';
+import { useRouter } from 'next/navigation';
+
 
 const Page = () => {
 const [openModal, setOpenModal] = useState<boolean>(false)
+const router = useRouter()
+
+
+useEffect(() => {
+
+  document.body.style.overflowY = openModal ? "hidden" : "auto"
+
+
+}, [openModal])
 
 
 
 
   return (
     <div className="min-h-screen bg-[#0f0f20] text-white font-sans p-6  ">
-      <button className=" text-sm font-medium mb-6  flex items-center gap-4 ">
+      <button onClick={() => router.back()} className=" text-sm font-medium mb-6  flex items-center gap-4 ">
         <Image src={"/images/back-icon.svg"} alt='back-icon' height={100} width={100} className=' w-[18px] h-[13px] ' /> Go Back
       </button>
 
