@@ -113,7 +113,7 @@ export default function AcceptOfferComponent() {
 
 
                     <button className="w-full py-3 px-6 text-sm font-bold text-[#FFFFFF] bg-[#8358FF] rounded-xl hover:scale-95 duration-150 ease-in-out transition-all " >
-                        Accept Offer
+                        Accept Offe
                     </button>
 
                 </div>
