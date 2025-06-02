@@ -1,10 +1,19 @@
-import React from 'react';
+"use client"
+
+
+
+import React, { useState } from 'react';
 import ListingInfo from './component/ListingInfo';
 import LoanTable from './component/LoanTable';
 import Image from 'next/image';
 import AcceptOfferComponent from './component/AcceptOfferComponent';
 
 const Page = () => {
+const [openModal, setOpenModal] = useState<boolean>(false)
+
+
+
+
   return (
     <div className="min-h-screen bg-[#0f0f20] text-white font-sans p-6  ">
       <button className=" text-sm font-medium mb-6  flex items-center gap-4 ">
@@ -15,10 +24,10 @@ const Page = () => {
           <ListingInfo />
 
         <div className="w-full lg:w-2/3 bg-[#1a1a2e] rounded-2xl p-5 shadow-lg">
-          <LoanTable />
+          <LoanTable setOpenModal={setOpenModal}  />
         </div>
       </div>
-      <AcceptOfferComponent/>
+    {openModal &&   <AcceptOfferComponent setOpenModal={setOpenModal} />}
     </div>
   );
 };

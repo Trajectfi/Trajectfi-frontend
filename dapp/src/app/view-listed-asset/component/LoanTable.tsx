@@ -1,7 +1,16 @@
+import React from 'react';
 import FilterBar from './FilterBar';
 import LoanRow from './LoanRow';
 
-export default function LoanTable() {
+
+
+
+interface LoanTableProps {
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+
+export default function LoanTable({setOpenModal}: LoanTableProps) {
   return (
     <div className="bg-[#1a1a2e] rounded-xl px-10 py-12 w-full md:flex-1 h-full flex flex-col">
       <FilterBar />
@@ -20,7 +29,7 @@ export default function LoanTable() {
           </thead>
           <tbody>
             {[...Array(6)].map((_, i) => (
-              <LoanRow key={i} />
+              <LoanRow key={i} setOpenModal={setOpenModal} />
             ))}
           </tbody>
         </table>
