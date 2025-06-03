@@ -32,20 +32,20 @@ export default function LoanTable({ setOpenModal }: LoanTableProps) {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <div className="bg-[#1a1a2e] rounded-xl px-10 py-12 w-full md:flex-1 h-full flex flex-col">
+    <div className="bg-[#1a1a2e] rounded-xl p-4 md:px-10 md:py-12 w-full md:flex-1 h-full flex flex-col">
       <FilterBar />
 
       <div className="overflow-x-auto mt-6 flex-1">
         <table className="min-w-full text-sm text-left text-white">
           <thead className="text-gray-400 border-b border-gray-600">
-            <tr className="uppercase text-xs text-[#F3EEFF] font-bold">
-              <th className="py-8 px-4">Loan value</th>
-              <th className="py-8 px-4">Lender</th>
-              <th className="py-8 px-4">Interest</th>
-              <th className="py-8 px-4">APR</th>
-              <th className="py-8 px-4">Duration</th>
-              <th className="py-8 px-4">Repayment</th>
-              <th className="py-8 px-4">Action</th>
+            <tr className="uppercase text-[10px] md:text-xs text-[#F3EEFF] font-bold">
+              <th className="py-8 px-2 md:px-4">Loan value</th>
+              <th className="py-8 px-2 md:px-4">Lender</th>
+              <th className="py-8 px-2 md:px-4">Interest</th>
+              <th className="py-8 px-2 md:px-4">APR</th>
+              <th className="py-8 px-2 md:px-4">Duration</th>
+              <th className="py-8 px-2 md:px-4">Repayment</th>
+              <th className="py-8 px-2 md:px-4">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -59,7 +59,7 @@ export default function LoanTable({ setOpenModal }: LoanTableProps) {
           </tbody>
         </table>
 
-        <div className="text-center text-gray-500 text-xs mt-6 flex items-center justify-center gap-3">
+        <div className="text-center text-gray-500 text-xs mt-6 flex items-center flex-col md:flex-row justify-center gap-3">
           <p>
             Showing {startIndex + 1} to{' '}
             {endIndex > tableData.length ? tableData.length : endIndex} of{' '}
@@ -80,11 +80,10 @@ export default function LoanTable({ setOpenModal }: LoanTableProps) {
                 <li
                   key={page}
                   onClick={() => setCurrentPage(page)}
-                  className={`px-2.5 py-1.5 rounded cursor-pointer text-sm ${
-                    currentPage === page
+                  className={`px-2.5 py-1.5 rounded cursor-pointer text-sm ${currentPage === page
                       ? 'bg-[#DEDEDE] text-black'
                       : 'text-[#707070] '
-                  }`}
+                    }`}
                 >
                   {page}
                 </li>

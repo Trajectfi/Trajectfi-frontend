@@ -40,12 +40,13 @@ export default function ListingInfo() {
         </div>
       </div>
 
-      <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg mb-4">
+      <div className="relative w-full max-w-sm  md:w-[277px] md:h-[240px]  overflow-hidden rounded-lg mb-4 bg-red-600">
         <Image
           src={"/images/CryptoPunk.svg"}
           alt="CryptoPunk"
-          fill
-          className="object-cover rounded-lg"
+          width={100}
+          height={100}
+          className="object-cover rounded-lg w-full h-full "
         />
         <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4 flex justify-between items-end">
           <div>
@@ -81,7 +82,7 @@ export default function ListingInfo() {
         You can unlist your item at any time.
       </p>
 
-      <div className="flex gap-2 mt-4">
+      <div className="flex flex-col md:flex-row gap-2 mt-4">
         <button className="flex-1 bg-[#343456] hover:bg-red-600 transition-all px-4 py-2 rounded-lg text-sm border border-[#8358FF] text-[#8358FF]">
           Remove Listing
         </button>
