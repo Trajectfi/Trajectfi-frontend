@@ -34,7 +34,7 @@ useEffect(() => {
       <div className="flex flex-col lg:flex-row gap-6">
           <ListingInfo />
 
-        <div className="w-[300px] overflow-x-auto lg:w-2/3 bg-[#1a1a2e] rounded-2xl p-5 shadow-lg">
+        <div className="w-[300px] overflow-x-auto md:w-full lg:w-2/3 bg-[#1a1a2e] rounded-2xl p-5 shadow-lg">
           <LoanTable setOpenModal={setOpenModal}  />
         </div>
       </div>

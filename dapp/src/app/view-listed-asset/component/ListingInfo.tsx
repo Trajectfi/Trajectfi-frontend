@@ -40,7 +40,7 @@ export default function ListingInfo() {
         </div>
       </div>
 
-      <div className="relative w-full max-w-sm  md:w-[277px] md:h-[240px]  overflow-hidden rounded-lg mb-4 bg-red-600">
+      <div className="relative w-full max-w-md  overflow-hidden rounded-lg mb-4 ">
         <Image
           src={"/images/CryptoPunk.svg"}
           alt="CryptoPunk"
