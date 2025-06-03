@@ -3,12 +3,15 @@ import FilterBar from './FilterBar';
 import LoanRow from './LoanRow';
 import { tableData } from '../data';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { tableDataProps } from '@/utils/interface';
 
 interface LoanTableProps {
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectedNFT: React.Dispatch<React.SetStateAction<tableDataProps | null>>
+
 }
 
-export default function LoanTable({ setOpenModal }: LoanTableProps) {
+export default function LoanTable({ setOpenModal, setSelectedNFT }: LoanTableProps) {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 6;
 
@@ -30,6 +33,9 @@ export default function LoanTable({ setOpenModal }: LoanTableProps) {
   };
 
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+
+
 
   return (
     <div className="bg-[#1a1a2e] rounded-xl p-4 md:px-10 md:py-12 w-full md:flex-1 h-full flex flex-col">
@@ -54,6 +60,7 @@ export default function LoanTable({ setOpenModal }: LoanTableProps) {
                 tableData={loanDetails}
                 key={i}
                 setOpenModal={setOpenModal}
+                setSelectedNFT={setSelectedNFT}
               />
             ))}
           </tbody>
@@ -81,8 +88,8 @@ export default function LoanTable({ setOpenModal }: LoanTableProps) {
                   key={page}
                   onClick={() => setCurrentPage(page)}
                   className={`px-2.5 py-1.5 rounded cursor-pointer text-sm ${currentPage === page
-                      ? 'bg-[#DEDEDE] text-black'
-                      : 'text-[#707070] '
+                    ? 'bg-[#DEDEDE] text-black'
+                    : 'text-[#707070] '
                     }`}
                 >
                   {page}

@@ -5,12 +5,20 @@ import React from "react";
 interface LoanRowProps {
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
   tableData: tableDataProps
+  setSelectedNFT: React.Dispatch<React.SetStateAction<tableDataProps | null>>
+
 }
 
 
 
-export default function LoanRow({setOpenModal, tableData}: LoanRowProps) {
+export default function LoanRow({setOpenModal, tableData, setSelectedNFT}: LoanRowProps) {
 
+
+
+  const handleClick  = (tableData: tableDataProps) => {
+    setOpenModal(true)
+    setSelectedNFT(tableData)
+  }
 
 
 
@@ -23,7 +31,7 @@ export default function LoanRow({setOpenModal, tableData}: LoanRowProps) {
       <td className="py-2 px-2 md:px-4">{tableData.duration} </td>
       <td className="py-2 px-2 md:px-4">{tableData.repayment.toLocaleString("en-us")} </td>
       <td className="py-2 px-2 md:px-4">
-        <button onClick={() => setOpenModal(true)} className="bg-[#8b5cf6] hover:bg-[#7c3aed] text-white px-4 py-1 rounded-full text-xs font-medium">
+        <button onClick={() => handleClick(tableData) } className="bg-[#8b5cf6] hover:bg-[#7c3aed] text-white px-4 py-1 rounded-full text-xs font-medium">
           Accept
         </button>
       </td>

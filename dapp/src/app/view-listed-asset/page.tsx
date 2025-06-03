@@ -8,11 +8,13 @@ import LoanTable from './component/LoanTable';
 import Image from 'next/image';
 import AcceptOfferComponent from './component/AcceptOfferComponent';
 import { useRouter } from 'next/navigation';
+import { tableDataProps } from '@/utils/interface';
 
 
 const Page = () => {
 const [openModal, setOpenModal] = useState<boolean>(false)
 const router = useRouter()
+const [selectedNFT, setSelectedNFT] = useState<tableDataProps | null>(null)
 
 
 useEffect(() => {
@@ -35,10 +37,10 @@ useEffect(() => {
           <ListingInfo />
 
         <div className="w-[300px] overflow-x-auto md:w-full lg:w-2/3 bg-[#1a1a2e] rounded-2xl p-5 shadow-lg">
-          <LoanTable setOpenModal={setOpenModal}  />
+          <LoanTable setOpenModal={setOpenModal}  setSelectedNFT={setSelectedNFT}  />
         </div>
       </div>
-    {openModal &&   <AcceptOfferComponent setOpenModal={setOpenModal} />}
+    {openModal &&   <AcceptOfferComponent setOpenModal={setOpenModal} setSelectedNFT={setSelectedNFT} selectedNFT={selectedNFT} />}
     </div>
   );
 };

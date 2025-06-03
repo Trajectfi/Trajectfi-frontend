@@ -24,7 +24,7 @@ export default function ListingInfo() {
 
 
   return (
-    <div className="bg-[#1a1a2e] rounded-xl p-4 w-full md:flex-1 text-white font-sans flex flex-col">
+    <div className="bg-[#1a1a2e] rounded-xl p-4 w-full md:flex-1 text-white  flex flex-col font-oxanium ">
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-sm font-medium text-[#B2B3BA] ">Listing Information</h3>
         <div className="flex gap-2">

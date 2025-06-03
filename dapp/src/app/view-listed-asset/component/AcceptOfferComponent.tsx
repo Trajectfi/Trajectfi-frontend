@@ -1,6 +1,7 @@
 "use client"
 
 
+import { tableDataProps } from "@/utils/interface";
 import { X } from "lucide-react";
 import Image from "next/image";
 import React, { SetStateAction, useState } from "react";
@@ -11,10 +12,12 @@ import React, { SetStateAction, useState } from "react";
 
 
 interface AcceptOfferComponentProps {
-    setOpenModal: React.Dispatch<SetStateAction<boolean>>
+    setOpenModal: React.Dispatch<SetStateAction<boolean>>;
+    selectedNFT: tableDataProps | null;
+    setSelectedNFT: React.Dispatch<React.SetStateAction<tableDataProps | null>>
 }
 
-export default function AcceptOfferComponent({ setOpenModal }: AcceptOfferComponentProps) {
+export default function AcceptOfferComponent({ setOpenModal, selectedNFT, setSelectedNFT }: AcceptOfferComponentProps) {
     const [currentStep, setCurrentStep] = useState(1);
     const [agreed, setAgreed] = useState(false)
 
@@ -41,7 +44,7 @@ export default function AcceptOfferComponent({ setOpenModal }: AcceptOfferCompon
     const offerSummary = [
         {
             title: "Lender",
-            value: "09b73a42",
+            value: selectedNFT?.lender,
         },
         {
             title: "Currency",
@@ -49,19 +52,19 @@ export default function AcceptOfferComponent({ setOpenModal }: AcceptOfferCompon
         },
         {
             title: "Acceptable Amount",
-            value: "0.001 STRK",
+            value:  selectedNFT?.loanValue.toLocaleString("en-us") + " " + "STRK",
         },
         {
             title: "Loan Duration",
-            value: "14 days",
+            value: selectedNFT?.duration ,
         },
         {
             title: "APR",
-            value: "8%",
+            value: selectedNFT?.apr + "%",
         },
         {
             title: "Repayment",
-            value: "0.0001023 STRK",
+            value: selectedNFT?.repayment.toLocaleString("en-us"),
         },
     ]
 
@@ -71,9 +74,15 @@ export default function AcceptOfferComponent({ setOpenModal }: AcceptOfferCompon
     };
 
 
+    const closeModal = () => {
+        setOpenModal(false)
+        setSelectedNFT(null)
+    }
+
+
 
     return (
-        <div onClick={() => setOpenModal(false)} className=" w-full min-h-screen fixed top-0 left-0 backdrop-blur-md bg-white/10 px-5 py-10" >
+        <div onClick={closeModal} className=" w-full min-h-screen fixed top-0 left-0 backdrop-blur-md bg-white/10 px-5 py-10" >
 
 
             <div className=" w-full h-full  flex items-center justify-center py-7 px-5 overflow-x-hidden  " >
@@ -109,7 +118,7 @@ export default function AcceptOfferComponent({ setOpenModal }: AcceptOfferCompon
 
                             <div className=" w-full flex items-center justify-between gap-10" >
                                 <h3 className="text-[#B2B3BA] font-semibold text-lg " >Accept Offer</h3>
-                                <button onClick={() => setOpenModal(false)} className="w-8 h-8 rounded-full bg-[#080A1F] flex items-center justify-center "><X /></button>
+                                <button onClick={closeModal} className="w-8 h-8 rounded-full bg-[#080A1F] flex items-center justify-center "><X /></button>
                             </div>
 
 
@@ -165,7 +174,7 @@ export default function AcceptOfferComponent({ setOpenModal }: AcceptOfferCompon
                     className={` w-full max-w-[400px] h-full max-h-[512px] bg-[#121428] border-[1px] border-[#1C1F3F] py-5 px-3 rounded-2xl  flex items-center flex-col gap-6 absolute top-[50%] left-[50%] translate-y-[-50%]  transform transition-all duration-200  ${currentStep < 2 ? "translate-x-[500%]  " : "translate-x-[-50%]"} `} >
                         <div className="w-full flex items-center justify-between gap-10" >
                             <h4 className="text-[#B2B3BA] font-semibold text-lg ">Accept Offer</h4>
-                            <button onClick={() => setOpenModal(false)} className="w-8 h-8 rounded-full bg-[#080A1F] flex items-center justify-center "><X /></button>
+                            <button onClick={closeModal} className="w-8 h-8 rounded-full bg-[#080A1F] flex items-center justify-center "><X /></button>
                         </div>
 
 
@@ -182,7 +191,11 @@ export default function AcceptOfferComponent({ setOpenModal }: AcceptOfferCompon
 
                         <div className="flex flex-col w-full gap-3 items-start mt-auto " >
 
-                            <button onClick={() => alert("Offer accepted")} className="w-full py-3 px-6 text-sm font-bold text-[#FFFFFF] bg-[#8358FF] rounded-xl hover:scale-95 duration-150 ease-in-out transition-all " >
+                            <button onClick={() => {
+                                closeModal()
+                                alert("Offer accepted")
+                                }}
+                                className="w-full py-3 px-6 text-sm font-bold text-[#FFFFFF] bg-[#8358FF] rounded-xl hover:scale-95 duration-150 ease-in-out transition-all " >
                                 Sign
                             </button>
                             <button onClick={() => setCurrentStep(1)} className="w-full py-3 px-6 text-sm font-bold text-[#FFFFFF] bg-transparent border-[#8358FF] border-[1px] rounded-xl hover:scale-95 duration-150 ease-in-out transition-all " >
