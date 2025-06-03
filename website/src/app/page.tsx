@@ -5,7 +5,6 @@ import Navbar from "./components/navbar";
 import Hero from "./components/hero";
 import HowItWorks from "./components/HowItWorks";
 import TopCollections from "./components/TopCollections";
-
 export default function Home() {
   return (
     <div className="flex flex-col bg-[#080a1f] text-gray-800">
