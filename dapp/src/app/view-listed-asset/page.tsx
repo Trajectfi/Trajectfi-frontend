@@ -26,7 +26,7 @@ useEffect(() => {
 
 
   return (
-    <div className="min-h-screen bg-[#0f0f20] text-white font-sans p-6  ">
+    <div className="font-oxanium min-h-screen bg-[#0f0f20] text-white p-6  ">
       <button onClick={() => router.back()} className=" text-sm font-medium mb-6  flex items-center gap-4 ">
         <Image src={"/images/back-icon.svg"} alt='back-icon' height={100} width={100} className=' w-[18px] h-[13px] ' /> Go Back
       </button>
