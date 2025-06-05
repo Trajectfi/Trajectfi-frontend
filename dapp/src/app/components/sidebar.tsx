@@ -102,7 +102,7 @@ export default function Sidebar() {
             active={true}
           />
           <SidebarItem
-            href="/get-loan"
+            href="/get_loan"
             icon={<LoanIcon />}
             text="Get a Loan"
             expanded={expanded}

@@ -14,12 +14,11 @@ interface LoanRecord {
 
 // Props are now optional since we're using default data
 interface LoanHistoryProps {
-  loanRecords?: LoanRecord[];
+  id: string;
 }
 
-const LoanHistory: React.FC<LoanHistoryProps> = ({ loanRecords }) => {
-  // Default data to use if props aren't provided
-  const defaultLoanRecords = [
+const loanHistoryData: Record<string, LoanRecord[]> = {
+  "1": [
     {
       borrower: "You",
       lender: "09b73a42",
@@ -40,10 +39,24 @@ const LoanHistory: React.FC<LoanHistoryProps> = ({ loanRecords }) => {
       repayment: "2,891.75",
       status: "Escrow",
     },
-  ];
+  ],
+  "2": [
+    {
+      borrower: "You",
+      lender: "09b73a45",
+      loanValue: "1,500",
+      startDate: "2/2/20",
+      apr: "12.00%",
+      duration: "20 days",
+      repayment: "1,650.00",
+      status: "Closed",
+    },
+  ],
+  // Puedes agregar más ids y datos mock aquí
+};
 
-  // Use provided records or fall back to defaults
-  const displayLoanRecords = loanRecords || defaultLoanRecords;
+const LoanHistory: React.FC<LoanHistoryProps> = ({ id }) => {
+  const displayLoanRecords = loanHistoryData[id] || loanHistoryData["1"];
 
   return (
     <div className="bg-[#121428] rounded-2xl p-6 h-full flex flex-col border border-[#1C1F3F]">
@@ -68,9 +81,7 @@ const LoanHistory: React.FC<LoanHistoryProps> = ({ loanRecords }) => {
         {displayLoanRecords.map((record, index) => (
           <div
             key={`loan-${index}`}
-            className={`grid grid-cols-8 gap-4 p-4 border-t border-[#1A1E3B] text-sm ${
-              index === displayLoanRecords.length - 1 ? "" : ""
-            } bg-[#121428]`}
+            className={`grid grid-cols-8 gap-4 p-4 border-t border-[#1A1E3B] text-sm bg-[#121428]`}
           >
             <div className="text-yellow-400">{record.borrower}</div>
             <div className="text-[#FC97FD]">{record.lender}</div>
