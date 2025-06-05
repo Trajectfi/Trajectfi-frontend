@@ -6,19 +6,43 @@ import nfticon1 from "../../../../public/images/nft-icon1.png";
 import nfticon2 from "../../../../public/images/nft-icon2.png";
 import nfticon3 from "../../../../public/images/nft-icon3.png";
 import question from "../../../../public/images/question-icon.png";
-import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
-const NFTInformation = () => {
+interface NFTInformationProps {
+  id: string;
+}
+
+const nftData: Record<string, any> = {
+  "1": {
+    image: "/images/NFT4.png",
+    name: "Cryptopunk #1232",
+    status: "Ongoing",
+    collectionName: "Cryptopunk VQ (STARK)",
+  },
+  "2": {
+    image: "/images/NFT2.png",
+    name: "Cryptopunk #1232",
+    status: "Closed",
+    collectionName: "Cryptopunk VQ (STARK)",
+  },
+  "3": {
+    image: "/images/NFT1.png",
+    name: "Cryptopunk #1232",
+    status: "Closed",
+    collectionName: "Cryptopunk VQ (STARK)",
+  },
+  "4": {
+    image: "/images/NFT5.png",
+    name: "Cryptopunk #1232",
+    status: "Closed",
+    collectionName: "Cryptopunk VQ (STARK)",
+  },
+};
+
+const NFTInformation: React.FC<NFTInformationProps> = ({ id }) => {
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
-  const searchParams = useSearchParams();
-  
-  // Extract parameters
-  const image = searchParams?.get("image") || "/default-image.png";
-  const name = searchParams?.get("name") || "Unknown NFT";
-  const status = searchParams?.get("status");
-  const collectionName = searchParams?.get("collectionName") || "Unknown Collection";
+  const nft = nftData[id] || nftData["1"];
 
   useEffect(() => {
     // This will run only on the client side
@@ -48,10 +72,10 @@ const NFTInformation = () => {
       {/* NFT Information */}
       <div className="flex justify-between border border-[#1C1F3F] rounded-3xl p-4 bg-[#121428]">
         <Image
-          src={image}
+          src={nft.image}
           width={500}
           height={700}
-          alt={name}
+          alt={nft.name}
           style={{ objectFit: "cover", width: "700px", height: "900px" }}
           className="rounded-3xl"
         />
@@ -76,27 +100,27 @@ const NFTInformation = () => {
 
           {/* NFT Title */}
           <h1 className="text-4xl font-bold text-white mb-2">
-            {collectionName}
+            {nft.collectionName}
           </h1>
-          <p className="text-gray-400 mb-6">Cryptopunk VQ (STRK)</p>
+          <p className="text-gray-400 mb-6">{nft.name}</p>
 
           {/* Status Tags */}
           <div className="flex gap-3 mb-8">
-            {status && (
+            {nft.status && (
               <span
                 className={`flex justify-center items-center px-4 text-xs rounded-full ${
-                  status === "Listed"
+                  nft.status === "Ongoing"
                     ? "bg-green-900 text-[#42CC7E]"
-                    : status === "Unlisted"
+                    : nft.status === "Closed"
                     ? "bg-amber-900 text-[#fb9224]"
                     : "bg-purple-900 text-[#b19ee4]"
                 }`}
               >
-                {status}
+                {nft.status}
               </span>
             )}
             <span className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm">
-              Ongoing
+              {nft.status}
             </span>
           </div>
 

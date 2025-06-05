@@ -10,39 +10,43 @@ interface OwnerStats {
 
 // Props are now optional since we're using default data
 interface OwnerInfoProps {
-  ownerAddress?: string;
-  ownerAvatar?: string;
-  borrowStats?: OwnerStats[];
-  lendStats?: OwnerStats[];
+  id: string;
 }
 
-const OwnerInfo: React.FC<OwnerInfoProps> = ({
-  ownerAddress,
-  ownerAvatar,
-  borrowStats,
-  lendStats
-}) => {
-  // Default data to use if props aren't provided
-  const defaultOwnerAddress = "09b73a43";
-  const defaultOwnerAvatar = "/path/to/avatar.png"; // Replace with your actual avatar path
-  
-  const defaultBorrowStats = [
-    { label: "Total Borrowed", value: "2,000.00 STRK" },
-    { label: "Avg. Borrowed", value: "500 STRK" },
-    { label: "Avg. Borrow Duration", value: "14 days" },
-  ];
-  
-  const defaultLendStats = [
-    { label: "Total Lent", value: "2,000.00 STRK" },
-    { label: "Avg. Loan Size", value: "500 STRK" },
-    { label: "Avg. Duration", value: "14 days" },
-  ];
+const ownerData: Record<string, any> = {
+  "1": {
+    ownerAddress: "09b73a43",
+    ownerAvatar: OwnerAvatar,
+    borrowStats: [
+      { label: "Total Borrowed", value: "2,000.00 STRK" },
+      { label: "Avg. Borrowed", value: "500 STRK" },
+      { label: "Avg. Borrow Duration", value: "14 days" },
+    ],
+    lendStats: [
+      { label: "Total Lent", value: "2,000.00 STRK" },
+      { label: "Avg. Loan Size", value: "500 STRK" },
+      { label: "Avg. Duration", value: "14 days" },
+    ],
+  },
+  "2": {
+    ownerAddress: "09b73a44",
+    ownerAvatar: OwnerAvatar,
+    borrowStats: [
+      { label: "Total Borrowed", value: "1,000.00 STRK" },
+      { label: "Avg. Borrowed", value: "250 STRK" },
+      { label: "Avg. Borrow Duration", value: "10 days" },
+    ],
+    lendStats: [
+      { label: "Total Lent", value: "1,000.00 STRK" },
+      { label: "Avg. Loan Size", value: "250 STRK" },
+      { label: "Avg. Duration", value: "10 days" },
+    ],
+  },
+  // Puedes agregar más ids y datos mock aquí
+};
 
-  // Use provided props or fall back to defaults
-  const displayOwnerAddress = ownerAddress || defaultOwnerAddress;
-  const displayOwnerAvatar = ownerAvatar || defaultOwnerAvatar;
-  const displayBorrowStats = borrowStats || defaultBorrowStats;
-  const displayLendStats = lendStats || defaultLendStats;
+const OwnerInfo: React.FC<OwnerInfoProps> = ({ id }) => {
+  const data = ownerData[id] || ownerData["1"];
 
   return (
     <div className="bg-[#121428] border-[1px] border-[#1C1F3F] rounded-2xl p-6 flex flex-col gap-6">
@@ -53,9 +57,9 @@ const OwnerInfo: React.FC<OwnerInfoProps> = ({
         <p className="text-gray-400">Owner</p>
         <div className="flex items-center gap-2 ml-auto">
           <div className="w-8 h-8 rounded-full overflow-hidden bg-purple-500">
-            {displayOwnerAvatar && (
+            {data.ownerAvatar && (
               <Image 
-                src={OwnerAvatar} 
+                src={data.ownerAvatar} 
                 alt="Owner Avatar" 
                 width={32} 
                 height={32}
@@ -63,13 +67,13 @@ const OwnerInfo: React.FC<OwnerInfoProps> = ({
               />
             )}
           </div>
-          <span className="text-[#FC97FD]">{displayOwnerAddress}</span>
+          <span className="text-[#FC97FD]">{data.ownerAddress}</span>
         </div>
       </div>
       
       {/* Borrowing Stats */}
       <div className="bg-[#070918] rounded-xl p-4 flex flex-col gap-3">
-        {displayBorrowStats.map((stat, index) => (
+        {data.borrowStats.map((stat: OwnerStats, index: number) => (
           <div key={`borrow-${index}`} className="flex justify-between">
             <p className="text-gray-400">{stat.label}</p>
             <p className="text-white">{stat.value}</p>
@@ -79,7 +83,7 @@ const OwnerInfo: React.FC<OwnerInfoProps> = ({
       
       {/* Lending Stats */}
       <div className="bg-[#070918] rounded-xl p-4 flex flex-col gap-3">
-        {displayLendStats.map((stat, index) => (
+        {data.lendStats.map((stat: OwnerStats, index: number) => (
           <div key={`lend-${index}`} className="flex justify-between">
             <p className="text-gray-400">{stat.label}</p>
             <p className="text-white">{stat.value}</p>
