@@ -10,10 +10,12 @@ import {
   CreditCard as LoanIcon,
   Search as SearchIcon,
 } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(true); // Default to collapsed
   const [isHovered, setIsHovered] = useState(false);
+  const pathname = usePathname();
 
   // Auto-collapse on mobile, maintain collapsed state on larger screens
   useEffect(() => {
@@ -99,19 +101,21 @@ export default function Sidebar() {
             icon={<AssetsIcon />}
             text="My Assets"
             expanded={expanded}
-            active={true}
+            active={pathname === "/my_assets"}
           />
           <SidebarItem
             href="/get_loan"
             icon={<LoanIcon />}
             text="Get a Loan"
             expanded={expanded}
+            active={pathname === "/get_loan"}
           />
           <SidebarItem
             href="/give-loan"
             icon={<LoanIcon />}
             text="Give a Loan"
             expanded={expanded}
+            active={pathname === "/give-loan"}
           />
         </nav>
       </div>
