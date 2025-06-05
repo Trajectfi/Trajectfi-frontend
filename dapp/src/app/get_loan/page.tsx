@@ -153,13 +153,13 @@ export default function LoansReceivedPage() {
                   <button
                     className="text-white text-xs font-medium flex items-center justify-center"
                     style={{
-                      width: "148px",
+                      width: "100%",
                       minHeight: "29px",
-                      background: "#8358FF",
                       borderRadius: "81.63px",
                       padding: "8px 12px",
-                      gap: "2px",
-                      marginTop: "16px"
+                      gap: "8px",
+                      marginTop: "16px",
+                      background: "#8358FF",
                     }}
                     onClick={() => router.push(`/loan-details/${loan.id}`)}
                   >
