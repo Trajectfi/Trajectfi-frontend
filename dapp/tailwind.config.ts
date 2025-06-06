@@ -23,6 +23,9 @@ export default {
       backgroundImage: {
         'page-bg': "url('/images/bg-image.png')",
       },
+      fontFamily: {
+        oxanium: ["var(--font-oxanium)"]
+      }
     },
   },
   plugins: [],
